@@ -1,0 +1,9 @@
+name: Animation
+version: '${project.version}'
+main: dk.banannus.animation.Animation
+api-version: 1.19
+authors: [ Banannus ]
+description: ArmorStand Animations
+commands:
+  animation:
+    description: Test command til animationer
