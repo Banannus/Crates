@@ -1,4 +1,4 @@
-package dk.banannus.animation.utils;
+package dk.banannus.crates.utils;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
@@ -28,7 +28,37 @@ public class GetSkull {
 		} catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException e1) {
 			e1.printStackTrace();
 		}
+		headMeta.setDisplayName(url);
 		head.setItemMeta(headMeta);
 		return head;
 	}
+
+	public static ItemStack getPlayerSkull(String name) {
+		ItemStack head = new ItemStack(Material.SKULL_ITEM, 1, (short)3);
+		SkullMeta meta = (SkullMeta) head.getItemMeta();
+		meta.setOwner(name);
+		head.setItemMeta(meta);
+		return head;
+	}
+
+	public static String getInternalKey(SkullMeta skullmeta) {
+		Field profileField = null;
+		try {
+			profileField = skullmeta.getClass().getDeclaredField("profile");
+			profileField.setAccessible(true);
+			GameProfile profile = (GameProfile) profileField.get(skullmeta);
+			if (profile != null && profile.getProperties().containsKey("textures")) {
+				Property property = profile.getProperties().get("textures").iterator().next();
+				String texture = property.getValue();
+				return texture;
+			}
+			return null;
+		} catch (NoSuchFieldException | IllegalAccessException | IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
 }

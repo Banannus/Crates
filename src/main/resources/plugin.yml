@@ -1,6 +1,6 @@
 name: Animation
 version: '${project.version}'
-main: dk.banannus.animation.Animation
+main: dk.banannus.crates.Crates
 api-version: 1.19
 authors: [ Banannus ]
 description: ArmorStand Animations

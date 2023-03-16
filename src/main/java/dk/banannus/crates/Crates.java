@@ -1,12 +1,12 @@
-package dk.banannus.animation;
+package dk.banannus.crates;
 
-import dk.banannus.animation.commands.AnimationCommand;
-import dk.banannus.animation.events.InteractListener;
+import dk.banannus.crates.commands.AnimationCommand;
+import dk.banannus.crates.events.InteractListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Animation extends JavaPlugin {
+public final class Crates extends JavaPlugin {
 
-    public static Animation instance;
+    public static Crates instance;
 
     @Override
     public void onEnable() {
@@ -23,7 +23,7 @@ public final class Animation extends JavaPlugin {
 
     }
 
-    public static Animation getInstance() {
+    public static Crates getInstance() {
         return instance;
     }
 }

@@ -1,4 +1,4 @@
-package dk.banannus.animation.utils;
+package dk.banannus.crates.utils;
 
 import net.md_5.bungee.api.ChatColor;
 

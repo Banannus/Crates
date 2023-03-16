@@ -1,10 +1,10 @@
-package dk.banannus.animation.events;
+package dk.banannus.crates.events;
 
-import dk.banannus.animation.tasks.ArmorStandAnimation;
-import dk.banannus.animation.utils.Chat;
+import dk.banannus.crates.tasks.ArmorStandAnimation;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,10 +24,32 @@ public class InteractListener implements Listener {
 		if (clickedBlock.getType() == Material.ENDER_CHEST) {
 			e.setCancelled(true);
 			Location location = e.getClickedBlock().getLocation();
-			ArmorStandAnimation animation = new ArmorStandAnimation(player, location);
-			animation.run();
+			Block enderChest = e.getClickedBlock();
+			BlockFace blockFace = getDirectionOfEnderChest(enderChest);
+			new ArmorStandAnimation(player, location, blockFace);
+
+
 		} else {
 			return;
 		}
 	}
+
+
+	@SuppressWarnings("deprecation")
+	public static BlockFace getDirectionOfEnderChest(Block enderChest) {
+		byte data = enderChest.getData();
+		switch (data) {
+			case 2:
+				return BlockFace.NORTH;
+			case 3:
+				return BlockFace.SOUTH;
+			case 4:
+				return BlockFace.WEST;
+			case 5:
+				return BlockFace.EAST;
+			default:
+				return BlockFace.NORTH;
+		}
+	}
 }
+
